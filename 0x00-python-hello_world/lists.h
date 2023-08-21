@@ -9,7 +9,6 @@
  * @next: Points to next node.
  * Description: Python project.
  */
-
 typedef struct listint_s
 {
 	int n;
