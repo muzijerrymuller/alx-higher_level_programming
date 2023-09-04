@@ -2,7 +2,7 @@
 
 
 
-"""Defines the rectangle class."""
+"""Defines the Rectangle class."""
 
 class Rectangle:
     """Representation of  a rectangle."""
