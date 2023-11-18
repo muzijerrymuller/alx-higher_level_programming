@@ -23,7 +23,7 @@ File: tests/
     
 1. Base class
 mandatory
-Score: 0.0% (Checks completed: 0.0%)
+Score: 65.0% (Checks completed: 100.0%)
 Write the first class Base:
 
 Create a folder named models with an empty file __init__.py inside - with this file, the folder will become a Python package
@@ -654,7 +654,7 @@ File: models/square.py
    
 15. Dictionary to JSON string
 mandatory
-Score: 0.0% (Checks completed: 0.0%)
+Score: 41.36% (Checks completed: 63.64%)
 JSON is one of the standard formats for sharing data representation.
 
 Update the class Base by adding the static method def to_json_string(list_dictionaries): that returns the JSON string representation of list_dictionaries:
@@ -692,7 +692,7 @@ File: models/base.py
    
 16. JSON string to file
 mandatory
-Score: 0.0% (Checks completed: 0.0%)
+Score: 8.78% (Checks completed: 13.51%)
 Update the class Base by adding the class method def save_to_file(cls, list_objs): that writes the JSON string representation of list_objs to a file:
 
 list_objs is a list of instances who inherits of Base - example: list of Rectangle or list of Square instances
@@ -725,7 +725,7 @@ File: models/base.py
    
 17. JSON string to dictionary
 mandatory
-Score: 0.0% (Checks completed: 0.0%)
+Score: 47.07% (Checks completed: 72.41%)
 Update the class Base by adding the static method def from_json_string(json_string): that returns the list of the JSON string representation json_string:
 
 json_string is a string representing a list of dictionaries
@@ -761,7 +761,7 @@ File: models/base.py
    
 18. Dictionary to Instance
 mandatory
-Score: 0.0% (Checks completed: 0.0%)
+Score: 8.78% (Checks completed: 13.51%)
 Update the class Base by adding the class method def create(cls, **dictionary): that returns an instance with all attributes already set:
 
 **dictionary can be thought of as a double pointer to a dictionary
@@ -800,7 +800,7 @@ File: models/base.py
    
 19. File to instances
 mandatory
-Score: 0.0% (Checks completed: 0.0%)
+Score: 9.85% (Checks completed: 15.15%)
 Update the class Base by adding the class method def load_from_file(cls): that returns a list of instances:
 
 The filename must be: <Class name>.json - example: Rectangle.json
@@ -864,6 +864,117 @@ guillaume@ubuntu:~/$ ./18-main.py
 [139785911764976] [Square] (5) 0/0 - 5
 [139785911765032] [Square] (6) 9/1 - 7
 guillaume@ubuntu:~/$ 
+Repo:
+
+GitHub repository: alx-higher_level_programming
+Directory: 0x0C-python-almost_a_circle
+File: models/base.py
+   
+20. JSON ok, but CSV?
+#advanced
+Score: 34.41% (Checks completed: 52.94%)
+Update the class Base by adding the class methods def save_to_file_csv(cls, list_objs): and def load_from_file_csv(cls): that serializes and deserializes in CSV:
+
+The filename must be: <Class name>.csv - example: Rectangle.csv
+Has the same behavior as the JSON serialization/deserialization
+Format of the CSV:
+Rectangle: <id>,<width>,<height>,<x>,<y>
+Square: <id>,<size>,<x>,<y>
+guillaume@ubuntu:~/$ cat 100-main.py
+#!/usr/bin/python3
+""" 100-main """
+from models.rectangle import Rectangle
+from models.square import Square
+
+if __name__ == "__main__":
+
+    r1 = Rectangle(10, 7, 2, 8)
+    r2 = Rectangle(2, 4)
+    list_rectangles_input = [r1, r2]
+
+    Rectangle.save_to_file_csv(list_rectangles_input)
+
+    list_rectangles_output = Rectangle.load_from_file_csv()
+
+    for rect in list_rectangles_input:
+        print("[{}] {}".format(id(rect), rect))
+
+    print("---")
+
+    for rect in list_rectangles_output:
+        print("[{}] {}".format(id(rect), rect))
+
+    print("---")
+    print("---")
+
+    s1 = Square(5)
+    s2 = Square(7, 9, 1)
+    list_squares_input = [s1, s2]
+
+    Square.save_to_file_csv(list_squares_input)
+
+    list_squares_output = Square.load_from_file_csv()
+
+    for square in list_squares_input:
+        print("[{}] {}".format(id(square), square))
+
+    print("---")
+
+    for square in list_squares_output:
+        print("[{}] {}".format(id(square), square))
+
+guillaume@ubuntu:~/$ ./100-main.py
+[140268695797600] [Rectangle] (1) 2/8 - 10/7
+[140268695797656] [Rectangle] (2) 0/0 - 2/4
+---
+[140268695529008] [Rectangle] (1) 2/8 - 10/7
+[140268695528952] [Rectangle] (2) 0/0 - 2/4
+---
+---
+[140268695822520] [Square] (5) 0/0 - 5
+[140268695826328] [Square] (6) 9/1 - 7
+---
+[140268695529232] [Square] (5) 0/0 - 5
+[140268695529176] [Square] (6) 9/1 - 7
+guillaume@ubuntu:~/$ 
+Repo:
+
+GitHub repository: alx-higher_level_programming
+Directory: 0x0C-python-almost_a_circle
+File: models/
+   
+21. Let's draw it
+#advanced
+Update the class Base by adding the static method def draw(list_rectangles, list_squares): that opens a window and draws all the Rectangles and Squares:
+
+You must use the Turtle graphics module
+To install it: sudo apt-get install python3-tk
+To make the GUI available outside your vagrant machine, add this line in your Vagrantfile: config.ssh.forward_x11 = true
+No constraints for color, shape etc… be creative!
+guillaume@ubuntu:~/$ cat 101-main.py
+#!/usr/bin/python3
+""" 101-main """
+from models.base import Base
+from models.rectangle import Rectangle
+from models.square import Square
+
+if __name__ == "__main__":
+
+    list_rectangles = [Rectangle(100, 40), Rectangle(90, 110, 30, 10), Rectangle(20, 25, 110, 80)]
+    list_squares = [Square(35), Square(15, 70, 50), Square(80, 30, 70)]
+
+    Base.draw(list_rectangles, list_squares)
+
+guillaume@ubuntu:~/$ ./101-main.py
+....
+Uncommented line in /etc/ssh/ssh_config that said # ForwardX11 no and change no to yes.
+Then added line config.ssh.forward_agent = true to my Vagrantfile in addition to config.ssh.forward_x11 = true.
+Halted my vm with vagrant halt and started it back up with vagrant up --provision then vagrant ssh.
+If you get an error that looks like /usr/bin/xauth: timeout in locking authority file /home/vagrant/.Xauthority, then enter rm .Xauthority (you may have to sudo).
+Logout and restart the vm with vagrant up --provision.
+Test with xeyes. If Xquartz is installed on the Mac OS it should open in an Xquartz window.
+It is your responsibility to request a review for this task from a peer before the project’s deadline. If no peers have been reviewed, you should request a review from a TA or staff member.
+
 Repo:
 
 GitHub repository: alx-higher_level_programming
