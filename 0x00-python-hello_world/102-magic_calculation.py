@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash/python3
 python3 -m compileall $PYFILE -b
 
 #task 13: 102-magic_calculation.py
