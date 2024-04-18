@@ -7,3 +7,4 @@ def read_file(filename=""):
                 
     except FileNotFoundError:
         print("File not found.")
+
