@@ -3,9 +3,9 @@
 Module for rectangle.
 """
 
-from base import Base
+from models.base import Base
 
-class Reactangle(Base):
+class Rectangle(Base):
     """
     Class for Reactangle.
     """
@@ -16,14 +16,14 @@ class Reactangle(Base):
      self.width = width
      self.height = height
      self.x = x
-     self.y
+     self.y = y
 
     @property
     def width(self):
-         return self.__with
+         return self.__width
 
     @width.setter
-    def width(self, vlue):
+    def width(self, value):
          self.__width = value
 
     @property
@@ -31,7 +31,7 @@ class Reactangle(Base):
         return self.__height
 
     @height.setter
-    def height(self, vlue):
+    def height(self, value):
          self.__height = value
 
     @property
@@ -39,7 +39,7 @@ class Reactangle(Base):
         return self.__x
 
     @x.setter
-    def x(self, vlue):
+    def x(self, value):
          self.__x = value
 
     @property
@@ -47,6 +47,6 @@ class Reactangle(Base):
         return self.__y
 
     @y.setter
-    def y(self, vlue):
+    def y(self, value):
          self.__y = value
 
