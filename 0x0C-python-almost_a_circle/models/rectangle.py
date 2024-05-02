@@ -35,7 +35,7 @@ class Rectangle(Base):
 
         if not isinstance(y, int):
             raise TypeError("y must be an integer")
-        self.__x = x
+        self.__y = y
 
         @property
         def width(self):
