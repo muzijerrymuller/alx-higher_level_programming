@@ -1,4 +1,4 @@
 -- inserts a new row of data
 INSERT INTO first_table ('id', 'name')
 VALUES
-(89, "Best school")
+(89, "Best school");
