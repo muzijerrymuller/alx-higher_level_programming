@@ -2,16 +2,12 @@
 """
 Lists all states in ascending order by states.id
 """
-import MySQLdb
 import sys
+import MySQLdb
 
-
-if __name__ == "__main__":
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    db_name = sys.argv[3]
-
+def list_states(mysql_username, mysql_password, db_name):
     try:
+        # Connect to MySQL server
         conn = MySQLdb.connect(
             host="localhost",
             port=3306,
@@ -20,16 +16,32 @@ if __name__ == "__main__":
             db=db_name,
             charset="utf8"
         )
+
+        # Create cursor
+        cur = conn.cursor()
+
+        # Execute SQL query to select states
+        cur.execute("SELECT * FROM states ORDER BY id ASC")
+
+        # Fetch all rows
+        rows = cur.fetchall()
+
+        # Display results
+        for row in rows:
+            print(row)
+
+        # Close cursor and connection
+        cur.close()
+        conn.close()
+
     except MySQLdb.Error as e:
         print("Error connecting to database: {}".format(e))
-        sys.exit(1)
 
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
-    rows = cur.fetchall()
+if __name__ == "__main__":
+    # Extract MySQL credentials from command-line arguments
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    db_name = sys.argv[3]
 
-    for row in rows:
-        print(row)
-
-    cur.close()
-    conn.close()
+    # Call the function to list states
+    list_states(mysql_username, mysql_password, db_name)
