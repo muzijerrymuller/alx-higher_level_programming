@@ -1,13 +1,18 @@
 #!/usr/bin/python3
 """
-Lists all states in ascending order by states.id
+Lists all states from the database hbtn_0e_0_usa sorted in ascending order by
+states.id
 """
-import sys
 import MySQLdb
+import sys
 
-def list_states(mysql_username, mysql_password, db_name):
+
+if __name__ == "__main__":
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    db_name = sys.argv[3]
+
     try:
-        # Connect to MySQL server
         conn = MySQLdb.connect(
             host="localhost",
             port=3306,
@@ -16,32 +21,16 @@ def list_states(mysql_username, mysql_password, db_name):
             db=db_name,
             charset="utf8"
         )
-
-        # Create cursor
-        cur = conn.cursor()
-
-        # Execute SQL query to select states
-        cur.execute("SELECT * FROM states ORDER BY id ASC")
-
-        # Fetch all rows
-        rows = cur.fetchall()
-
-        # Display results
-        for row in rows:
-            print(row)
-
-        # Close cursor and connection
-        cur.close()
-        conn.close()
-
     except MySQLdb.Error as e:
         print("Error connecting to database: {}".format(e))
+        sys.exit(1)
 
-if __name__ == "__main__":
-    # Extract MySQL credentials from command-line arguments
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    db_name = sys.argv[3]
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    rows = cur.fetchall()
 
-    # Call the function to list states
-    list_states(mysql_username, mysql_password, db_name)
+    for row in rows:
+        print(row)
+
+    cur.close()
+    conn.close()
