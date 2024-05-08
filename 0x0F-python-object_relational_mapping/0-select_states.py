@@ -2,8 +2,8 @@
 """
 Lists all states in ascending order by states.id
 """
-import sys
 import MySQLdb
+import sys
 
 
 if __name__ == "__main__":
