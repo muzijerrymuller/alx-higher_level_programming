@@ -2,7 +2,6 @@
 """
 Takes state name and prints cities
 """
-
 import sys
 import MySQLdb
 
@@ -17,4 +16,3 @@ if __name__ == "__main__":
     c.execute(query)
 
     print(", ".join([ct[2] for ct in c.fetchall() if ct[4] == sys.argv[4]]))
-
