@@ -4,18 +4,16 @@ Displays all values in the states
 & is safe from SQL injections
 """
 import MySQLdb
-import sys
+from sys import argv
 
 if __name__ == "__main__":
-    db_connect = MySQLdb.connect(host="localhost", port=3306,
-                            user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-
-    db_cursor = db_connect.cursor()
-    db_cursor.execute(
-        "SELECT * FROM states WHERE name LIKE \
-                    BINARY %(name)s ORDER BY states.id ASC", {'name': argv[4]})
-
-    rows_selected = db_cursor.fetchall()
-
-    for row in rows_selected:
+    conn = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                           passwd=argv[2], db=argv[3], charset="utf8")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM states WHERE name = %s ORDER BY states.id ASC",
+                (argv[4], ))
+    query_rows = cur.fetchall()
+    for row in query_rows:
         print(row)
+    cur.close()
+    conn.close()
