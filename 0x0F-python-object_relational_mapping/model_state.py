@@ -6,14 +6,15 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
-"""
-Represents a state entity in the database.
 
-Attributes:
-    id (int): The unique identifier for the state (primary key).
-    name (str): The name of the state, limited to 128 characters.
-"""
 class State(Base):
+    """
+    Represents a state entity in the database.
+
+    Attributes:
+        id (int): The unique identifier for the state (primary key).
+        name (str): The name of the state, limited to 128 characters.
+    """
     __tablename__ = 'states'
 
     id = Column(Integer, primary_key=True)
