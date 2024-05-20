@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import urllib
+import urllib.request
 
 url = 'https://alx-intranet.hbtn.io/status'
 # Use a with statement to ensure the response is properly closed after use
