@@ -5,6 +5,9 @@ Finds the highest number in a set of numbers
 
 
 def find_peak(list_of_integers):
+    """
+    Finds the highest int
+    """
     size = len(list_of_integers)
     mid_e = size
     mid = size // 2
