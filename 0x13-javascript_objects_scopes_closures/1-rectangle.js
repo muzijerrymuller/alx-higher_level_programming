@@ -1,5 +1,4 @@
-#!/usr/bin/env node
-
+#!/usr/bin/node
 'use strict';
 
 function Rectangle(w, h) {
