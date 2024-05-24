@@ -7,9 +7,8 @@ class Rectangle {
 	}
 }
 print() {
-  const row = 'X'.repeat(this.width);
-  for (let i = 0; i < this.height; i++) {
-    console.log(row);
+	for (let i = 0; i < this.height; i++) {
+    console.log(new Array(this.width + 1).join('X'));
   }
 }
 module.exports = Rectangle;
