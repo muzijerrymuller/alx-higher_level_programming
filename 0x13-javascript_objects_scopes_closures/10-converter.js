@@ -1,7 +1,12 @@
 #!/usr/bin/node
-let logCount = 0;
+const counter = {
+  logCount: 0,
+  logMe(item) {
+    console.log(`${this.logCount}: ${item}`);
+    this.logCount++;
+  }
+};
 
-exports.logMe = (item) => {
-  console.log(`${logCount}: ${item}`);
-  logCount++;
+exports.logMe = function (item) {
+  counter.logMe(item);
 };
