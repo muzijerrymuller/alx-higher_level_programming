@@ -1,17 +1,21 @@
 #!/usr/bin/node
 
 const axios = require('axios');
-const url = process.argv[2];
+const targetUrl = process.argv[2];
 
-if (!url) {
+if (!targetUrl) {
   console.error('Usage: ./status_code.js <URL>');
   process.exit(1);
 }
 
-axios.get(url)
+axios.get(targetUrl, { maxRedirects: 10 })
   .then(response => {
     console.log(`code: ${response.status}`);
   })
   .catch(error => {
-    console.error('Error:', error.message);
+    if (error.response) {
+      console.log(`code: ${error.response.status}`);
+    } else {
+      console.error('Error:', error.message);
+    }
   });
