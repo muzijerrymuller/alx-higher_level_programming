@@ -1,7 +1,7 @@
 --Generates database hbtn_0d_2
 
 --Creates HBTN
-CREATE DATABASE hbtn_0d_2 IF NOT EXISTS;
+CREATE DATABASE IF NOT EXISTS hbtn_0d_2;
 
 --Create SQL user & password
 CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost' IDENTIFIED BY 'user_0d_2_pwd';
