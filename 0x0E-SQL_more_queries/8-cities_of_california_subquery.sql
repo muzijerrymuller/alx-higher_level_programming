@@ -1,4 +1,4 @@
--- From database all cities can be found.
+-- From database all cities  can be found.
 SELECT `id`, `name`
   FROM `cities`
  WHERE `state_id` IN
