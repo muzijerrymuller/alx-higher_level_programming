@@ -1,15 +1,16 @@
 #!/usr/bin/node
 import requests
+
 def get_completed_tasks(api_url):
     try:
         response = requests.get(api_url)
-        response.raise_for_status()
+        response.raise_for_status()  # Raise an error for bad status codes
     except requests.exceptions.RequestException as e:
         print(f"Failed to fetch data from API. Error: {e}")
         return
 
     tasks = response.json()
-    
+
     user_task_counts = {}
 
     for task in tasks:
@@ -20,23 +21,9 @@ def get_completed_tasks(api_url):
             else:
                 user_task_counts[user_id] = 1
 
-    if not user_task_counts:
-        print("No users with completed tasks found.")
-    else:
-        for user_id, count in user_task_counts.items():
-            print(f"User ID {user_id} has completed {count} tasks")
+    for user_id, count in user_task_counts.items():
+        print(f"User ID {user_id} has completed {count} tasks")
 
 if __name__ == "__main__":
-    # Example URLs based on your test cases
-    api_urls = [
-        "http://localhost:5050/route_0",
-        "http://localhost:5050/route_1",
-        "http://localhost:5050/route_2",
-        "http://localhost:5050/route_3",
-        "http://localhost:5050/route_4"
-    ]
-    
-    for url in api_urls:
-        print(f"Fetching data from {url}")
-        get_completed_tasks(url)
-        print("-" * 50)
+    api_url = "https://jsonplaceholder.typicode.com/todos"
+    get_completed_tasks(api_url)
