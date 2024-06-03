@@ -1,3 +1,4 @@
+#!/usr/bin/node
 import requests
 
 def get_completed_tasks(api_url):
