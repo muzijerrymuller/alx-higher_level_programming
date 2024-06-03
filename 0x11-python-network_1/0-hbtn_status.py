@@ -1,14 +1,14 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+"""
+Performs an HTTP GET request to retrieve the status information from the URL https://alx-intranet.hbtn.io/status.
+"""
 import urllib.request
-import ssl
 
-url = 'https://alx-intranet.hbtn.io/status'
-
-ssl_context = ssl.create_default_context()
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
-
-# Use a with statement to ensure the response is properly closed after use
-with urllib.request.urlopen(url) as response:
-    body = response.read().decode('utf-8')
-    print("\t- {}".format(body))
+if __name__ == "__main__":
+    request = urllib.request.Request("https://alx-intranet.hbtn.io/status")
+    with urllib.request.urlopen(request) as response:
+        body = response.read()
+        print("Body response:")
+        print("\t- type: {}".format(type(body)))
+        print("\t- content: {}".format(body))
+        print("\t- utf8 content: {}".format(body.decode("utf-8")))
