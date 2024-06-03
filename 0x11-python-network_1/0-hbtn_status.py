@@ -4,6 +4,7 @@ Performs an HTTP GET request to retrieve the status information from the URL htt
 """
 import urllib.request
 
+
 if __name__ == "__main__":
     request = urllib.request.Request("https://alx-intranet.hbtn.io/status")
     with urllib.request.urlopen(request) as response:
