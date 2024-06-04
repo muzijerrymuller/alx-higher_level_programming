@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Performs an HTTP GET request to retrieve the status information from the URL https://alx-intranet.hbtn.io/status.
+Performs an HTTP GET request to retrieve the status
+information from the URL https://alx-intranet.hbtn.io/status.
 """
 import urllib.request
 
