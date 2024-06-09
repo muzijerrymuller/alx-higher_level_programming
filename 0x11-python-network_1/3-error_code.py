@@ -5,7 +5,8 @@ displays the response body (decoded in UTF-8).
 Handles urllib.error.HTTPError exceptions,
 printing 'Error code: ' followed by the status code.
 Uses only 'urllib' and 'sys' packages and the 'with' statement.
-No need to check script arguments. Test with a web server running on port 5000.
+No need to check script arguments.
+Test with a web server running on port 5000.
 """
 import urllib.request
 import sys
