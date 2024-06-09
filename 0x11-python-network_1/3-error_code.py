@@ -8,6 +8,7 @@ Uses only 'urllib' and 'sys' packages and the 'with' statement.
 No need to check script arguments.
 Test with a web server running on port 5000.
 """
+
 import urllib.request
 import sys
 
@@ -17,5 +18,5 @@ if __name__ == "__main__":
             print(response.read().decode("utf-8"))
     except urllib.error.HTTPError as error:
         print("Error code: {}".format(error.code))
-    except:
+    except BaseException:
         pass
