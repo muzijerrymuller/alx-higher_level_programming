@@ -1,11 +1,14 @@
 #!/usr/bin/node
-
+/**
+ * single line parameters
+ */
 class Rectangle {
-	constructor(w, h) {
-		if (w > 0 && h > 0) {
-			[this.width, this.height] = [w, h];
-		}
-	}
+  constructor (w, h) {
+    if (w > 0 && h > 0) {
+      this.width = w;
+      this.height = h;
+    }
+  }
 }
 
 module.exports = Rectangle;
