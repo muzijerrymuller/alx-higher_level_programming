@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env python3
 import requests
 
 def get_completed_tasks(api_url):
