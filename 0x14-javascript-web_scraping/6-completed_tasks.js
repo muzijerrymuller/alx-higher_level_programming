@@ -1,26 +1,28 @@
 #!/usr/bin/node
-//Number of tasks completed by user id.
+// Number of tasks completed by user id.
 
 const args = process.argv;
-let reqURL = args[2];
-let request = require('request');
-request(reqURL, function (error, response, body) {
+const reqURL = args[2];
+const request = require('request');
+
+request(reqURL, (error, response, body) => {
   if (error) {
-    console.log('error:', error);
+    console.log('Error:', error);
   } else {
-    let todos = JSON.parse(body);
-    let dash = {};
-    for (let i = 0; i < todos.length; i++) {
-      let status = (todos[i]['completed']);
-      let key = todos[i]['userId'].toString();
-      if (status) {
-        if (dash[key]) {
-          dash[key]++;
+    const todos = JSON.parse(body);
+    const taskCount = {};
+
+    todos.forEach(todo => {
+      if (todo.completed) {
+        const userId = todo.userId.toString();
+        if (taskCount[userId]) {
+          taskCount[userId]++;
         } else {
-          dash[key] = 1;
+          taskCount[userId] = 1;
         }
       }
-    }
-    console.log(dash);
+    });
+
+    console.log(taskCount);
   }
 });
