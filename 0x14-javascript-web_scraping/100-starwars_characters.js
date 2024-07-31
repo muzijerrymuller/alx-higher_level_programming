@@ -24,5 +24,3 @@ request(apiUrl, function (error, response, body) {
   } else {
     console.error('Error fetching movie data:', error);
   }
-});
-
