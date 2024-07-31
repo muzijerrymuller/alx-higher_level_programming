@@ -1,4 +1,6 @@
 #!/usr/bin/node
+// Gets the content of a webpage
+
 const request = require('request');
 const fs = require('fs');
 
