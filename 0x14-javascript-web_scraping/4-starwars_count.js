@@ -1,4 +1,7 @@
 #!/usr/bin/node
+// This printsds the amount of times Wedge Antilies by id 18
+// is present
+
 const request = require('request');
 request(process.argv[2], function (error, response, body) {
   if (!error) {
