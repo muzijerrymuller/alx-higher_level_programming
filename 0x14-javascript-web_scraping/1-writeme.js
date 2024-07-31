@@ -1,5 +1,7 @@
 #!/usr/bin/node
 // this code writes a string to a file
+// The content of the file must be written in utf-8
+// If an error occurred during while writing, print the error object
 
 const fs = require('fs');
 const file = process.argv[2];
